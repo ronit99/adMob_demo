@@ -74,6 +74,16 @@ class _MyHomePageState extends State<MyHomePage> {
           }
         });
     reward.load();
+    Future.delayed(Duration(seconds: 5), () async {
+      if (await reward.isLoaded) {
+        reward.show();
+      }
+    });
+  }
+  void show() async {
+    setState(() {
+      reward.show();
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -82,16 +92,10 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("Admob list"),
       ),
       body: Center(
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
-          Container(height: 200,
-          color: Colors.red,
-          ),
             Expanded(
-
               child: ListView.builder(
                   itemCount: 50,
                   itemBuilder: (context, index) {
@@ -123,7 +127,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
             RaisedButton(
               onPressed: () async {
-                if (await reward.isLoaded) {
+                if (await reward.isLoaded)
+                {
                   reward.show();
                 }
               },
@@ -133,7 +138,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-
     );
   }
 }
